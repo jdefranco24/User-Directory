@@ -4,6 +4,8 @@ import Table from "./Table";
 import { getUsers } from "./API";
 import "./App.css";
 
+const PORT = process.env.PORT || 3001;
+
 function App() {
   const [initialUsers, updateAvailableUsers] = useState([]);
   const [usersToRender, updateUsersToRender] = useState([]);
@@ -23,6 +25,9 @@ function App() {
       <Table users={usersToRender} />
     </div>
   );
+}
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
 }
 
 export default App;
